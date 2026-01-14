@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2025 Stats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --wood:#6b4328;
+      --board-edge:#52341f;
+      --parchment:#f5ead6;
+      --parchment-ink:#3b2e2a;
+      --gold:#b88b3a;
+      --peg:#4b3426;
+      --accent:#8a5a2b;
+    }
+
+    
+    body {
+        font-family: 'IM Fell English SC', serif;
+        background: url('assets/shirebg.webp') center/cover no-repeat fixed;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+    }
+
+    
+   
+    .board-title{
+      text-align:center;
+      font-family: 'IM Fell English SC', serif;
+      font-size:34px;
+      color:var(--peg);
+      letter-spacing:1px;
+      margin-bottom:18px;
+      text-shadow:0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .board-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 120px 220px;
+      gap:22px 20px;
+      align-items:start;
+    }
+
+
+    /* Parchment card base */
+    .parchment{
+      background: rgba(242, 221, 181, 0.9);
+      border-radius:10px;
+      padding:18px 22px;
+      position:relative;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+      border: 1px solid rgba(86,60,35,0.12);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+      overflow:hidden;
+    }
+
+    .parchment:hover{ transform: translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.35) }
+
+    .parchment::before{
+      content:'';
+      position:absolute;
+      right:-40px;
+      bottom:-40px;
+      width:160px;height:160px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,240,220,0.6), rgba(210,180,140,0.18) 40%, transparent 60%);
+      transform: rotate(15deg);
+      border-radius:50%;
+      pointer-events:none;
+      opacity:0.9;
+    }
+
+    .parchment .title{
+      font-family:'IM Fell English SC', serif;
+      font-size:20px;
+      color:var(--accent);
+      margin-bottom:8px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .parchment .title .goldline{
+      height:2px;width:60px;background:linear-gradient(90deg,var(--gold), #e0c27b);
+      border-radius:2px; box-shadow:0 1px 0 rgba(255,255,255,0.15) inset;
+    }
+
+    .parchment p, .parchment li{ color:var(--parchment-ink); margin:6px 0; font-size:16px }
+
+    .big-count{ font-size:42px; font-family:'IM Fell English SC', serif; color:var(--accent); text-align:center; margin-top:6px }
+    .big-sub{ text-align:center; font-size:14px; color:#6b4f3a }
+
+    .ftable{ width:100%; border-collapse:collapse; margin-top:8px }
+    .ftable th, .ftable td{ border-bottom:1px dotted rgba(86,60,35,0.12); padding:8px 6px; text-align:left; font-size:15px }
+    .ftable th{ font-family:'IM Fell English SC', serif; color:var(--accent); font-size:14px }
+    .ftable .num{ text-align:left; font-weight:700 }
+
+    .months-graph{ display:flex; align-items:flex-end; gap:10px; height:140px; padding:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:8px }
+    .bar{ width:40px; height: 100%; background:var(--bar-bg); display:flex; align-items:flex-end; justify-content:center; border-radius:6px 6px 0 0; overflow:visible; position:relative }
+    .bar-fill{ width:100%; background:#6b4328; border-radius:6px 6px 0 0; display:block }
+    .bar-label{ font-size:12px; margin-top:8px; text-align:center }
+    .bar-value{ position:absolute; top:auto; bottom:calc(100% + 4px); font-size:12px; color:#4a2f1f; }
+
+    .langs{ display:flex; gap:10px; align-items:center; justify-content:space-around }
+    .lang{ text-align:center }
+    .lang .count{ font-size:20px; font-weight:700 }
+    .lang .code{ font-size:13px; color:#6b4f3a }
+
+
+    /* responsive */
+    @media (max-width:860px){
+      .board-grid{ grid-template-columns: 1fr; grid-template-rows: auto; }
+      .parchment::before{ display:none }
+      .parchment.p1 .peg, .parchment.p2 .peg, .parchment.p3 .peg, .parchment.p4 .peg{ transform: translateY(-50%) scale(0.9) }
+      .months-graph{ height:120px }
+    }
+  </style>
+</head>
+<body>
+  <div class="notice-wrap" role="region" aria-label="Shire notice board">
+    <div class="board-title">Year 2025</div>
+
+    <div class="board-grid">
+      <div class="parchment p1" aria-hidden="false">
+        <div class="title"><span>Books read this year</span><span class="goldline"></span></div>
+        <div class="big-count">30</div>
+      </div>
+
+      <div class="parchment p2">
+        <div class="title"><span>Languages</span><span class="goldline"></span></div>
+        <div style="margin-top:10px" class="langs">
+          <div class="lang"><div class="count">21</div><div class="code">ENG</div></div>
+          <div class="lang"><div class="count">7</div><div class="code">RUS</div></div>
+          <div class="lang"><div class="count">1</div><div class="code">SLO</div></div>
+          <div class="lang"><div class="count">1</div><div class="code">CZE</div></div>
+        </div>
+       
+      </div>
+
+      <div class="parchment p3">
+         <div class="title"><span>Format & Genre</span><span class="goldline"></span></div>
+        <table class="ftable" aria-label="Format and genre breakdown">
+          <thead>
+            <tr><th></th><th>Paper</th><th>Digital</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Fiction</td><td class="num">11</td><td class="num">15</td></tr>
+            <tr><td>Non-fiction</td><td class="num">1</td><td class="num">3</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="parchment p4">
+        <div class="title"><span>Monthly reads</span><span class="goldline"></span></div>
+        <div style="margin-top:8px" aria-hidden="false">
+          <div class="months-graph" role="img" aria-label="Monthly reads bar chart">
+            <div class="bar" aria-label="January: 5"><div class="bar-fill" style="height:100%"></div><div class="bar-value">5</div></div>
+            <div class="bar" aria-label="February: 2"><div class="bar-fill" style="height:40%"></div><div class="bar-value">2</div></div>
+            <div class="bar" aria-label="March: 0"><div class="bar-fill" style="height:0%"></div><div class="bar-value">0</div></div>
+            <div class="bar" aria-label="April: 2"><div class="bar-fill" style="height:40%"></div><div class="bar-value">2</div></div>
+            <div class="bar" aria-label="May: 4"><div class="bar-fill" style="height:80%"></div><div class="bar-value">4</div></div>
+            <div class="bar" aria-label="June: 2"><div class="bar-fill" style="height:40%"></div><div class="bar-value">2</div></div>
+            <div class="bar" aria-label="July: 5"><div class="bar-fill" style="height:100%"></div><div class="bar-value">5</div></div>
+            <div class="bar" aria-label="August: 3"><div class="bar-fill" style="height:60%"></div><div class="bar-value">3</div></div>
+            <div class="bar" aria-label="September: 1"><div class="bar-fill" style="height:20%"></div><div class="bar-value">1</div></div>
+            <div class="bar" aria-label="October: 2"><div class="bar-fill" style="height:40%"></div><div class="bar-value">2</div></div>
+            <div class="bar" aria-label="November: 2"><div class="bar-fill" style="height:40%"></div><div class="bar-value">2</div></div>
+            <div class="bar" aria-label="December: 2"><div class="bar-fill" style="height:40%"></div><div class="bar-value">2</div></div>
+          </div>
+          <div style="display:flex; gap:6px; justify-content:center; margin-top:10px; flex-wrap:wrap">
+            <div class="bar-label">Jan</div>
+            <div class="bar-label">Feb</div>
+            <div class="bar-label">Mar</div>
+            <div class="bar-label">Apr</div>
+            <div class="bar-label">May</div>
+            <div class="bar-label">Jun</div>
+            <div class="bar-label">Jul</div>
+            <div class="bar-label">Aug</div>
+            <div class="bar-label">Sep</div>
+            <div class="bar-label">Oct</div>
+            <div class="bar-label">Nov</div>
+            <div class="bar-label">Dec</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

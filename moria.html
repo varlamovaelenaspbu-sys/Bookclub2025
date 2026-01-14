@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <title>Rohan</title>
+</head>
+<style>
+  html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  }
+
+  body {
+  font-family: 'IM Fell English SC', serif;
+  background: url('assets/moriabg.jpg') center/cover no-repeat fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  }
+</style>
+<body>
+
+<section class="rohan-section">
+  <h1>Disappointments</h1>
+
+  <div class="top-three">
+    <div class="top-card" data-title="The absolute worst" data-author="Norwegian Wood by Haruki Murakami" data-note="Do I even have to elaborate on this one?."></div>
+    <div class="top-card" data-title="Good idea, bad execution" data-author="Apophenia by Alexander Panchin" data-note="He's a great non-fiction writer but writing a good fictional story requires different skills"></div>
+ </div>
+
+</section>
+<script>
+  const cards = document.querySelectorAll('.top-card, .carousel-card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('revealed');
+    });
+  });
+</script>
+</body>
+</html>

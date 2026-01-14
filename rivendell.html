@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Club Bingo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <style>
+   body {
+    font-family: 'IM Fell English SC', serif;
+    background: url("./assets/rivbg.jpeg") center/cover no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+
+    h1 {
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .bingo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 120px);
+      grid-template-rows: repeat(4, 120px);
+      gap: 10px;
+    }
+
+    .cell {
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 2px solid #888;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      text-align: center;
+      padding: 10px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.1s, background-color 0.3s;
+      backdrop-filter: blur(2px);
+    }
+
+    .cell:hover {
+      transform: scale(1.05);
+      background-color: rgba(200, 200, 255, 0.8);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #f3ead7;
+      color: #3b2e2a;
+      font-family: 'IM Fell English SC', serif;
+      border: 2px solid #a68a64;
+      box-shadow: 0 4px 12px rgba(75, 54, 33, 0.3);
+      padding: 20px;
+      max-width: 750px;
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .modal-content h2 {
+      font-size: 1.6em;
+      color: #5b4228;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      font-size: 1.1em;
+      line-height: 1.8;
+    }
+
+    .modal-content img {
+      max-width: 200px;
+      height: auto;
+      border: 1px solid #a68a64;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(60, 40, 20, 0.2);
+    }
+
+    .modal-text {
+      flex: 1;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #5b4228;
+      font-weight: bold;
+      font-family: 'IM Fell English SC', serif;
+    }
+
+    .cell.runes::after {
+      content: "";
+      background-image: url('https://www.pngall.com/wp-content/uploads/12/Lord-Of-The-Rings-PNG-HD-Image.png');
+      background-size: cover;           
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.6;                     
+      z-index: 1;                       
+    }
+
+    .cell.runes > * {
+      position: relative;
+      z-index: 2;                       
+    }
+
+  </style>
+</head>
+<body>
+  <h1>2025 bingo card</h1>
+  <div class="bingo-grid">
+    <div class="cell runes" onclick="openModal('modal1')">Theatre play</div>
+    <div class="cell" onclick="openModal('modal2')">Over 600 pages</div>
+    <div class="cell runes" onclick="openModal('modal3')">Manga</div>
+    <div class="cell" onclick="openModal('modal4')">Before 1900</div>
+    <div class="cell" onclick="openModal('modal5')">Ergodic literature</div>
+    <div class="cell runes" onclick="openModal('modal6')">Comic</div>
+    <div class="cell runes" onclick="openModal('modal7')">New genre</div>
+    <div class="cell runes" onclick="openModal('modal8')">Over 800 pages</div>
+    <div class="cell runes" onclick="openModal('modal9')">Graphic novel</div>
+    <div class="cell" onclick="openModal('modal10')">Published in 2025</div>
+    <div class="cell runes" onclick="openModal('modal11')">Wild card</div>
+    <div class="cell runes" onclick="openModal('modal12')">Start a book series</div>
+    <div class="cell runes" onclick="openModal('modal13')">Non-fiction</div>
+    <div class="cell" onclick="openModal('modal14')">Finish a book series</div>
+    <div class="cell" onclick="openModal('modal15')">Reread</div>
+    <div class="cell" onclick="openModal('modal16')">Indie author</div>
+  </div>
+
+  <div class="modal" id="modal1" onclick="closeModal(event, 'modal1')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal1')">&times;</span>
+      <img src="https://www.penguin.co.uk/_next/image?url=https%3A%2F%2Fcdn.penguin.co.uk%2Fdam-assets%2Fbooks%2F9780241682074%2F9780241682074-jacket-large.jpg&w=819&q=100" alt="Macbeth cover">
+      <div class="modal-text">
+        <h2>Theatre play</h2>
+        <p><strong>Macbeth</strong></p>
+        <p>First Shakespeare play I've read in original (shoulder pats for Lena). Language needs some getting used to, but after a while it becomes a fast read.</p>
+        <p><strong>Would recommend? </strong>Sure</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal3" onclick="closeModal(event, 'modal3')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal3')">&times;</span>
+      <img src="https://i.pinimg.com/736x/50/eb/08/50eb086ba88dbf3c1f6b5a32c1c86d59.jpg" alt="Gantz cover">
+      <div class="modal-text">
+        <h2>Manga</h2>
+        <p><strong>Gantz</strong></p>
+        <p>A very epic page turner. But I missed a proper epilogue, and authour's obsession with female nudity and bad anatomy pissed me off.</p>
+        <p><strong>Would recommend? </strong>Maybe</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal6" onclick="closeModal(event, 'modal6')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal6')">&times;</span>
+      <img src="https://m.media-amazon.com/images/I/91SNuwWZpsL._UF1000,1000_QL80_.jpg" alt="The Batman who laughs cover">
+      <div class="modal-text">
+        <h2>Comic</h2>
+        <p><strong>The batman who laughs</strong></p>
+        <p>Liked it but think it should've been longer to have more time to develope.</p>
+        <p><strong>Would recommend? </strong>If you like darker stories</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal7" onclick="closeModal(event, 'modal7')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal7')">&times;</span>
+      <img src="https://m.media-amazon.com/images/I/91NMEozwQlL._UF1000,1000_QL80_.jpg" alt="Lost in math cover">
+      <div class="modal-text">
+        <h2>New genre</h2>
+        <p><strong>The hound of the baskervilles</strong></p> 
+        <p>As it is a well-known story, a lot of things are predictable, but I still enjoyed reading it.</p>
+        <p><strong>Would recommend? </strong>Yes</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal8" onclick="closeModal(event, 'modal8')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal8')">&times;</span>
+      <img src="https://emka.si/cdn/shop/files/9780349139630.jpg?v=1760087267&width=1024" alt="Macbeth cover">
+      <div class="modal-text">
+        <h2>Over 800 pages</h2>
+        <p><strong>Goldfinch</strong></p>
+        <p> Very plot-heavy book. I still like the Secret History more, but I enjoyed reading this book a lot (Jussi, you'll definitely love this one!)</p>
+        <p><strong>Would recommend? </strong>Yes</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal9" onclick="closeModal(event, 'modal9')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal9')">&times;</span>
+      <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Maus_%28volume_1%29_cover.jpg" alt="Maus cover">
+      <div class="modal-text">
+        <h2>Graphic novel</h2>
+        <p><strong>Maus</strong></p>
+        <p>A good WWII story about the side we didn't learn in so much details in school. I expected the last part to be longer, but I also understand why it wasn't.</p>
+        <p><strong>Would recommend? </strong>To interested in the topic</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal11" onclick="closeModal(event, 'modal11')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal11')">&times;</span>
+      <img src="https://www.knihydobrovsky.cz/thumbs/book-detail/mod_eshop/produkty/r/r-u-r-9788073900625.jpg" alt="R.U.R. cover">
+      <div class="modal-text">
+        <h2>Wild card</h2>
+        <p><strong>R.U.R.</strong></p>
+        <p>I'm proud of myself that I've read it in Czech. I didn't like Helena's plotline and how her character was written, but I still enjoyed the story.</p>
+        <p><strong>Would recommend? </strong>Maybe</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal12" onclick="closeModal(event, 'modal12')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal12')">&times;</span>
+      <img src="https://emka.si/cdn/shop/products/9780340999073.jpg?v=1732653174" alt="How to train your dragon cover">
+      <div class="modal-text">
+        <h2>Start a book series</h2>
+        <p><strong>How to train your dragon</strong></p>
+        <p>The book is vastly different from the movies, but I liked it nonetheless (just another way to feed my httyd obsession lol).</p>
+        <p><strong>Would recommend? </strong>Maybe</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal13" onclick="closeModal(event, 'modal13')">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal(event, 'modal13')">&times;</span>
+      <img src="https://m.media-amazon.com/images/I/61lpu1CQLuL._UF1000,1000_QL80_.jpg" alt="Lost in math cover">
+      <div class="modal-text">
+        <h2>Non-fiction</h2>
+        <p><strong>Lost in math</strong></p> 
+        <p>Great overview of current state of physics and a very important conversation started. The only off thing is some out of place comments on economics.</p>
+        <p><strong>Would recommend? </strong>Even though it's a non-fiction on particle physics, I'd recommend it to everyone related to or interested in science/academia.</p>
+      </div>
+    </div>
+  </div>
+
+  
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(event, id) {
+      if (event.target.classList.contains('modal') || event.target.classList.contains('close-button')) {
+        document.getElementById(id).style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

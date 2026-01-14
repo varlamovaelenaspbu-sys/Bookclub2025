@@ -1,0 +1,101 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <style>
+    #mordor {
+      position: relative;
+      height: 100vh;
+      background: radial-gradient(circle at center, #1a1a1a, #000);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #f4e6c2;
+      font-family: 'IM Fell English SC', serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .sauron-eye {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .mordor-text {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    #line1, #line2 {
+      font-size: 1.8rem;
+      margin: 10px 0;
+      white-space: pre-wrap;
+      min-height: 2rem;
+    }
+
+    #big-goal {
+      font-size: 6rem;
+      font-weight: bold;
+      margin-top: 30px;
+      opacity: 0;
+      transform: scale(0.7);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+      color: #ff3b3b;
+      text-shadow: 0 0 20px #ff0000, 0 0 50px #ff6600;
+      letter-spacing: 5px;
+    }
+
+    #big-goal.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
+</head>
+
+<body>
+  <section id="mordor">
+    <img src="assets/download.gif" alt="Eye of Sauron" class="sauron-eye">
+    <div class="mordor-text">
+      <p id="line1"></p>
+      <p id="line2"></p>
+      <h1 id="big-goal">LESS</h1>
+    </div>
+  </section>
+
+  <script>
+    function typeText(element, text, speed, callback) {
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(typing, speed);
+        } else if (callback) {
+          setTimeout(callback, 500);
+        }
+      }
+      typing();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const line1 = document.getElementById("line1");
+      const line2 = document.getElementById("line2");
+      const bigGoal = document.getElementById("big-goal");
+
+      typeText(line1, "One goal to rule them all...", 70, () => {
+        typeText(line2, "This year I shall read...", 70, () => {
+          setTimeout(() => bigGoal.classList.add("show"), 500);
+        });
+      });
+    });
+  </script>
+</body>

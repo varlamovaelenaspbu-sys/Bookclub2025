@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Middle-earth Book Club Journey</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="map-container">
+    <img src="assets/big-middle-earth-map (1).jpg" alt="Map of Middle Earth" class="map" />
+    
+    <img src="assets/pin.png" class="pin shire" data-section="shire" alt="Shire Pin" />
+    <img src="assets/pin.png" class="pin rivendell" data-section="rivendell" alt="Rivendell Pin" />
+    <img src="assets/pin.png" class="pin moria" data-section="moria" alt="Moria Pin" />
+    <img src="assets/pin.png" class="pin rohan" data-section="rohan" alt="Edoras Pin" />
+    <img src="assets/pin.png" class="pin gondor" data-section="gondor" alt="Minas Tirith Pin" />
+    <img src="assets/pin.png" class="pin mordor" data-section="mordor" alt="Mordor Pin" />
+
+    <svg class="path-lines"></svg>
+  </div>
+  <div id="popup-overlay" class="hidden">
+    <div id="popup-box">
+      <button id="popup-close">✖</button>
+      <iframe id="popup-content" src=""></iframe>
+    </div>
+  </div>
+  <div id="section-content"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

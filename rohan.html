@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <title>Rohan</title>
+</head>
+<style>
+  html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  }
+
+  body {
+  font-family: 'IM Fell English SC', serif;
+  background: url('assets/rohanbg.webp') center/cover no-repeat fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  }
+
+</style>
+<body>
+
+<section class="rohan-section">
+  <h2 class="rohan-title">Personal favourites</h2>
+
+  <div class="top-three">
+    <div class="top-card" data-title="Fiction" data-author="The City of Dreaming Books by Walter Moers" data-note="It's one of those fantasy books where, with every page, you genuinely wonder how did author have enough imagination to come with these things. Also we saw a theater play and it was amazing^^."></div>
+    <div class="top-card" data-title="Non-fiction" data-author="Lost in Math by Sabine Hossenfelder" data-note="Even though the book focuses mostly on physics, and its theoretical explanations can be difficult to follow at times, this is a very important discussion, and the problem discussed here can easily be applied across all of academia."></div>
+    <div class="top-card" data-title="Both? Both is good" data-author="Greatest Nobodies in History by Adrian Bliss" data-note="Ridiculous retelling of history events followed by a breakdown of what actually happened made it both hilarious and educational. Also this is a book where you can read about emu war from emu's pov and isn't that a treat."></div>
+  </div>
+
+</section>
+<script>
+  const cards = document.querySelectorAll('.top-card, .carousel-card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('revealed');
+    });
+  });
+</script>
+</body>
+</html>

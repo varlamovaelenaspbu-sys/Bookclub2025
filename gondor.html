@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Club Bingo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <style>
+   body {
+    font-family: 'IM Fell English SC', serif;
+    background: url("./assets/gonbg.webp") center/cover no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+
+    h1 {
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .bingo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 120px);
+      grid-template-rows: repeat(4, 120px);
+      gap: 10px;
+    }
+
+    .cell {
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 2px solid #888;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      text-align: center;
+      padding: 10px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.1s, background-color 0.3s;
+      backdrop-filter: blur(2px);
+    }
+
+    .cell:hover {
+      transform: scale(1.05);
+      background-color: rgba(200, 200, 255, 0.8);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #f3ead7;
+      color: #3b2e2a;
+      font-family: 'IM Fell English SC', serif;
+      border: 2px solid #a68a64;
+      box-shadow: 0 4px 12px rgba(75, 54, 33, 0.3);
+      padding: 20px;
+      max-width: 750px;
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .modal-content h2 {
+      font-size: 1.6em;
+      color: #5b4228;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      font-size: 1.1em;
+      line-height: 1.8;
+    }
+
+    .modal-content img {
+      max-width: 200px;
+      height: auto;
+      border: 1px solid #a68a64;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(60, 40, 20, 0.2);
+    }
+
+    .modal-text {
+      flex: 1;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #5b4228;
+      font-weight: bold;
+      font-family: 'IM Fell English SC', serif;
+    }
+
+
+  </style>
+</head>
+<body>
+  <h1>2026 bingo card</h1>
+  <div class="bingo-grid">
+    <div class="cell" onclick="openModal('modal1')">Chosen for a cover</div>
+    <div class="cell" onclick="openModal('modal2')">Chosen for a title</div>
+    <div class="cell" onclick="openModal('modal3')">Comic / Manga / Graphic novel</div>
+    <div class="cell" onclick="openModal('modal4')">Before 1800</div>
+    <div class="cell" onclick="openModal('modal5')">Book in Czech</div>
+    <div class="cell" onclick="openModal('modal6')">Book in Slovenian</div>
+    <div class="cell" onclick="openModal('modal7')">Finish a book series</div>
+    <div class="cell" onclick="openModal('modal8')">Over 700 pages</div>
+    <div class="cell" onclick="openModal('modal9')">Recommended by a friend</div>
+    <div class="cell" onclick="openModal('modal10')">Published in 2026</div>
+    <div class="cell" onclick="openModal('modal11')">Wild card</div>
+    <div class="cell" onclick="openModal('modal12')">Poetry</div>
+    <div class="cell" onclick="openModal('modal13')">Non-fiction</div>
+    <div class="cell" onclick="openModal('modal14')">Collection of short stories</div>
+    <div class="cell" onclick="openModal('modal15')">Reread</div>
+    <div class="cell" onclick="openModal('modal16')">Wild card</div>
+  </div>
+
+ 
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(event, id) {
+      if (event.target.classList.contains('modal') || event.target.classList.contains('close-button')) {
+        document.getElementById(id).style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
